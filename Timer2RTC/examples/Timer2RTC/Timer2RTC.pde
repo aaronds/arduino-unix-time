@@ -2,7 +2,7 @@
  * Timer2RTC example.
  *
  * DO NOT TRY TO USE THIS SKETCH ON AN UNMODIFIED ARDUIO IT
- * RELYS ON A 32Khz OSILLATOR.
+ * RELIES ON A 37Khz OSILLATOR.
  *
  * As the name sudgests it uses Timer 2 so you CAN NOT use pwm on pin 3
  * and 11.

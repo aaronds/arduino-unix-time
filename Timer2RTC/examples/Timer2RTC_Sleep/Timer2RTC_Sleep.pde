@@ -2,7 +2,7 @@
  * Timer2RTC example - including sending the ardunio to sleep while waiting.
  *
  * DO NOT TRY TO USE THIS SKETCH ON AN UNMODIFIED ARDUIO IT
- * RELYS ON A 32Khz OSILLATOR.
+ * RELIES ON A 37Khz OSILLATOR.
  *
  * Sleeping stuf from:
  * http://www.arduino.cc/playground/Learning/ArduinoSleepCode
@@ -21,8 +21,6 @@ Timer2RTC clock;
 
 /*A seconds counter, used to detect when time changes.*/
 unsigned long long seconds = 0;
-
-
 
 void toSleep(){
   /* See ATmega168 datasheet section 9.5: Timer 2 overflow wakes ardunio 
