@@ -1,9 +1,9 @@
 /**
- * UnixTimeChron - perform a time dependend action.
+ * UnixTimeCron - perform a time dependend action.
  */
 
-#ifndef __UNIX_TIME_CHRON
-#define __UNIX_TIME_CHRON
+#ifndef __UNIX_TIME_CRON
+#define __UNIX_TIME_CRON
 
 #include <UnixTime.h>
 
@@ -11,7 +11,7 @@ extern "C" {
 	#include <string.h>
 }
 
-class UnixTimeChronAction {
+class UnixTimeCronAction {
 	public:
 		/**
 		 * constructor.
@@ -20,7 +20,7 @@ class UnixTimeChronAction {
 		 * else action will be triggered every repeat seconds offset by time.
 		 *
 		 */ 
-		UnixTimeChronAction(unsigned long long time,unsigned long long repeat);
+		UnixTimeCronAction(unsigned long long time,unsigned long long repeat);
 		unsigned long long time;
 		unsigned long long repeat;
 		
@@ -37,16 +37,16 @@ class UnixTimeChronAction {
 		 * The next item in the list of actions.
 		 */
 
-		UnixTimeChronAction *next;
+		UnixTimeCronAction *next;
 };
 
-class UnixTimeChronCallbackAction : public UnixTimeChronAction {
+class UnixTimeCronCallbackAction : public UnixTimeCronAction {
 	public:
 		/**
 		 * A simple callback action will call 'cb' when the action is triggered data is also passed to the callback.
 		 */
 
-		UnixTimeChronCallbackAction(unsigned long long time,unsigned long repeat,void (*cb) (unsigned long long time,void *data),void *data); 
+		UnixTimeCronCallbackAction(unsigned long long time,unsigned long repeat,void (*cb) (unsigned long long time,void *data),void *data); 
 		void go(unsigned long long time);
 		
 		void *data;
@@ -56,10 +56,10 @@ class UnixTimeChronCallbackAction : public UnixTimeChronAction {
 
 
 
-class UnixTimeChron {
+class UnixTimeCron {
 
 	public:
-		UnixTimeChron();
+		UnixTimeCron();
 
 
 		/**
@@ -81,14 +81,14 @@ class UnixTimeChron {
 		 *
 		 * Add an action to this chron.
 		 */
-		void add(UnixTimeChronAction *action);
+		void add(UnixTimeCronAction *action);
 		
 		/**
 		 * rem.
 		 *
 		 * Remove an action.
 		 */
-		void rem(UnixTimeChronAction *action);
+		void rem(UnixTimeCronAction *action);
 
 		/**
 		 * The last time poll was called.
@@ -98,7 +98,7 @@ class UnixTimeChron {
 		/**
 		 * The first action associated with this poll.
 		 */
-		UnixTimeChronAction *first;
+		UnixTimeCronAction *first;
 
 		/**
 		 * The clock.

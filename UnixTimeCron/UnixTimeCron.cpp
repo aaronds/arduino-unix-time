@@ -1,29 +1,29 @@
-#include <UnixTimeChron.h>
+#include <UnixTimeCron.h>
 
-UnixTimeChronAction::UnixTimeChronAction(unsigned long long t,unsigned long long r){
+UnixTimeCronAction::UnixTimeCronAction(unsigned long long t,unsigned long long r){
 	time = t;
 	repeat = r;
 	next = NULL;
 }
 
-void UnixTimeChronAction::go(unsigned long long time){
+void UnixTimeCronAction::go(unsigned long long time){
 
 }
 
-UnixTimeChronCallbackAction::UnixTimeChronCallbackAction(unsigned long long t,unsigned long r,void (*cb) (unsigned long long t,void *d),void *d) : UnixTimeChronAction(t,r) {
+UnixTimeCronCallbackAction::UnixTimeCronCallbackAction(unsigned long long t,unsigned long r,void (*cb) (unsigned long long t,void *d),void *d) : UnixTimeCronAction(t,r) {
 	data = d;
 	callback = cb;
 }
 
-void UnixTimeChronCallbackAction::go(unsigned long long time){
+void UnixTimeCronCallbackAction::go(unsigned long long time){
 	(*callback) (time,data);
 }
 
-UnixTimeChron::UnixTimeChron(){
+UnixTimeCron::UnixTimeCron(){
        first = NULL;
 }
 
-void UnixTimeChron::add(UnixTimeChronAction *action){
+void UnixTimeCron::add(UnixTimeCronAction *action){
 	if(!first){
 		first = action;
 	}else{
@@ -32,13 +32,13 @@ void UnixTimeChron::add(UnixTimeChronAction *action){
 	}
 }
 
-void UnixTimeChron::init(UnixTime *r){
+void UnixTimeCron::init(UnixTime *r){
 	rtc = r;
 	lastPoll = r->getTime();
 }
 
-void UnixTimeChron::rem(UnixTimeChronAction *action){
-	UnixTimeChronAction *prev;
+void UnixTimeCron::rem(UnixTimeCronAction *action){
+	UnixTimeCronAction *prev;
 
 	if(action == first){
 		first = action->next;
@@ -58,8 +58,8 @@ void UnixTimeChron::rem(UnixTimeChronAction *action){
 	}
 }
 
-void UnixTimeChron::poll(){
-	UnixTimeChronAction *tmp;
+void UnixTimeCron::poll(){
+	UnixTimeCronAction *tmp;
 	while(lastPoll < rtc->getTime()){
 		lastPoll++;
 		tmp = first;

@@ -1,5 +1,5 @@
 /**
- * Unix Time Chron Example.
+ * Unix Time Cron Example.
  *
  * Demostration of a periodic action library for Arduino.
  *
@@ -11,13 +11,13 @@
 #include <avr/interrupt.h>
 #include <UnixTime.h>
 #include <MillisRTC.h>
-#include <UnixTimeChron.h>
+#include <UnixTimeCron.h>
 
 MillisRTC clock;
-UnixTimeChron chron;
+UnixTimeCron cron;
 
 
-void test_chron_action(unsigned long long time,void *data){
+void test_cron_action(unsigned long long time,void *data){
   Serial.print("Time: ");
   Serial.println((unsigned long) time);
 }
@@ -30,13 +30,13 @@ void say_twenty_action(unsigned long long time,void *data){
  * A callback action will run the function above every ten seconds.
  */
 
-UnixTimeChronCallbackAction sayTime(0,10,&test_chron_action,NULL);
+UnixTimeCronCallbackAction sayTime(0,10,&test_cron_action,NULL);
 
 /**
  * A callback action will run only when the time is 20.
  */
 
-UnixTimeChronCallbackAction sayTwenty(20,0,&say_twenty_action,NULL);
+UnixTimeCronCallbackAction sayTwenty(20,0,&say_twenty_action,NULL);
 
 void setup(){
   Serial.begin(9600);
@@ -44,12 +44,12 @@ void setup(){
    * Setup the clock.
    */
   clock.setTime(0);
-  chron.init(&clock);
-  chron.add(&sayTime);
-  chron.add(&sayTwenty);
+  cron.init(&clock);
+  cron.add(&sayTime);
+  cron.add(&sayTwenty);
   Serial.println("Clock Started");
 }
 
 void loop(){
-  chron.poll();
+  cron.poll();
 }
