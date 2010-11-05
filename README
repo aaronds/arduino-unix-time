@@ -2,12 +2,12 @@ A set of libraries for performing periodic actions on the arduino platform.
 
 Illustrative example:
 
-http://github.com/aaronds/arduino-unix-time/blob/master/UnixTimeChron/examples/unix_time_chron_example/unix_time_chron_example.pde
+http://github.com/aaronds/arduino-unix-time/blob/master/UnixTimeCron/examples/unix_time_cron_example/unix_time_cron_example.pde
 
 UnixTime - An abstract class for a time source to inherit from.
 MillisRTC - A time source using the millis() command.
 Timer2RTC - A much better time source requiring an external 37Khz oscillator.
-UnixTimeChron - The library which performs periodic actions (see examples folder).
+UnixTimeCron - The library which performs periodic actions (see examples folder).
 
 Download zips to be extracted in the Arduino libraries folder from:
 
